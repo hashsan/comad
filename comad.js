@@ -60,3 +60,60 @@ function comad(text,updateCaller){
 }
 
 window.comad = comad;
+
+
+//add comadInput
+
+function comadInput(inputTarget,outputTarget,savekey){
+
+  var $input = document.createElement('div')
+  $input.id ="comadInput"
+  //$input.style = `outline:1px solid;padding:1rem;border-radius:4px;`
+  $input.contentEditable="plaintext-only"
+  document.querySelector(inputTarget).append($input)
+  //
+  var $output = document.querySelector(outputTarget)
+  //
+  var key = savekey || '__comad__'
+  //
+  $input.onkeydown =(event)=>{
+    if(event.key==='Enter'){
+      event.preventDefault();
+
+      const text = $input.textContent
+      $input.textContent=''
+      input(text)
+    }
+  }
+
+  function input(text){
+    const co = comad(text,update)
+
+    $output.append(co.comad)  
+  }
+
+  function update(){return requestAnimationFrame(()=>{
+
+    const datas = Array.from($output.querySelectorAll('.edit'))
+    .map(d=>d.textContent).join('\n')
+    localStorage.setItem(key,datas)
+
+  })}
+
+  function load(){
+    var data = localStorage.getItem(key)||''
+    input(data)
+  }
+
+  load();
+
+}
+
+window.comadInput = comadInput
+
+/*
+//#comadInput{ outline:1px solid;padding:1rem;border-radius:4px;}
+comadInput('footer','main','__comad__')
+*/
+
+
