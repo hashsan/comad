@@ -5,6 +5,14 @@ import "https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js";
 function comad(text,updateCaller){
   //updatecallerは呼び出すだけで何もしない。
   var o={}
+
+  o.format =(text)=>{
+    //markedの仕様では末尾は\nが入ったほうがいい。
+    //空文字の場合は何もしない。基本入ってこない。
+    if(!text) return '';
+    return text.trimEnd() +'\n'
+  }
+
   o.parse = marked.parse
 
   o.view = document.createElement('div')
@@ -16,7 +24,7 @@ function comad(text,updateCaller){
     o.edit.classList.add('edit')
     o.edit.contentEditable = 'plaintext-only'
     o.edit.style.outline ='none'
-    o.edit.textContent = text||''
+    o.edit.textContent = o.format(text) //text||''
   }
 
   o.comad = document.createElement('div')
@@ -29,7 +37,7 @@ function comad(text,updateCaller){
   o.showView =()=>{
     o.edit.style.display ='none'
     o.view.style.display ='block'
-    const text = o.edit.textContent
+    const text = o.format(o.edit.textContent) //
     o.view.innerHTML = o.parse(text)
     if(updateCaller){
       updateCaller()
