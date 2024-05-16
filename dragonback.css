@@ -43,6 +43,11 @@ body{
   background:#000;
   color:#eee;
 }
+
+body{
+  scroll-behavior:smooth;
+}
+
 .frame,
 #frame{
   padding:1rem 2rem;
