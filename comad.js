@@ -40,7 +40,7 @@ function comad(text,updateCaller){
     const text = o.format(o.edit.textContent) //
     o.view.innerHTML = o.parse(text)
     if(updateCaller){
-      updateCaller()
+      setTimeout(updateCaller,100) //.innerHTMLは即座に反映されない
     }
   }
   
