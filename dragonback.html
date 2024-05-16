@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="jp" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  <title>dragonback</title>
+
+  <link rel="canonical" href="https://codepen.io/pinkromeo/pen/bGyVeLd">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  
+<style>
+@import url('https://hashsan.github.io/comad/dragonback.css');
+  
+#comadInput{
+  margin-top:2rem;
+  outline:1px solid;padding:1rem;border-radius:4px;  
+}
+
+.r{
+  text-align:right;
+}
+
+#nav{
+  margin-top:0.25rem;
+}
+#file{
+  cursor:pointer;
+  font-size:0.8rem;
+  padding:4px;
+  color:#ccc;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div id="fullback"></div>
+<header></header>
+<main></main>
+<footer>
+  <div id="input"></div>
+  <div class="r" id="nav">
+    <label id="file">...</label>
+  </div>
+</footer>
+  
+      <script id="rendered-js" type="module">
+import "https://hashsan.github.io/comad/comad.js";
+
+import "https://hashsan.github.io/writer/dropAndClip.js";
+import "https://hashsan.github.io/writer/autoWriter.js"
+
+
+const key = '__test__'
+comadInput('#input','main',key)
+
+
+//セーブ周り
+if(autoWriter){
+  const $name = document.querySelector('#file');  
+  var name = autoWriter.name + '.md'
+  $name.textContent = name;
+  
+  ctrl_s(async()=>{
+    const text = localStorage.getItem(key)
+    $name.style.color='#f26';
+    await autoWriter.set(name,text)
+    $name.style.color=''
+  })  
+  //
+}else{
+  ctrl_s(()=>{
+    const text = localStorage.getItem(key)
+    newTab(text,'text/plain')    
+  })
+}
+
+function ctrl_s(caller){
+  const dde= document.documentElement  
+  dde.addEventListener('keydown',async(event)=>{
+    if(event.ctrlKey && event.key==='s'){
+      event.preventDefault();
+      if(caller) caller()
+    }
+  })
+}
+
+function newTab(text, type = 'text/html') {
+
+  type = type +';charset=utf-8;'
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const newTab = window.open(url, '_blank');
+
+  // タブが開かれた後、URL を解放する
+  if (newTab) {
+    newTab.addEventListener('load', () => {
+      URL.revokeObjectURL(url);
+    });
+  } else {
+    // 新しいタブがブロックされた場合は、警告を出す
+    console.warn('Popup was blocked. Please enable popups for this site.');
+  }
+}
+    </script>
+
+  
+</body>
+
+</html>
