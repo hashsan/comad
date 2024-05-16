@@ -1,0 +1,57 @@
+@import url('https://hashsan.github.io/wizblue/dragoncaps.css');
+:root{
+  --background:url(https://i.pinimg.com/564x/f2/7f/7b/f27f7b1005a60676b58e72e1315e918e.jpg);
+}
+
+#fullback{
+  height:100vh;
+  width:100vw;
+  position:fixed;
+  left:0;top:0;
+  background:var(--background);
+  background-size:cover;
+  z-index:-10;
+  filter:brightness(0.2);
+}
+
+body{
+  margin:auto;
+  max-width:600px;
+  padding:4rem;
+  line-height:1.5;
+  background:#000;
+  color:#eee;
+}
+.frame,
+#frame{
+  padding:1rem 2rem;
+  border:1px solid;
+  border-radius:4px;
+  color:#eee;
+}
+
+p{
+  margin:1rem 0;
+}
+h1,h2,h3,h4,h5{
+  color:#ccc;
+  margin-top:3rem;
+  margin-bottom:1rem;
+}
+h1{
+  text-align:center;  
+}
+h1::before,h1::after,
+h2::before,h3::before,h4::before{
+  font-family:dragoncaps;
+  font-weight:normal;
+  vertical-align:-0.2em;
+}
+h1::before,h1::after{
+  content:'$';
+  padding:0 2rem;
+}
+h2::before,h3::before,h4::before{
+  content:'Q';
+  padding-right:1rem;
+}
