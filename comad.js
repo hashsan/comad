@@ -106,7 +106,17 @@ function comadInput(inputTarget,outputTarget,savekey){
     input(data)
   }
   */
+  
+  function load(){
+    var data = localStorage.getItem(key)||''
+    var ary = prase(data)
+    for(const line of ary){
+      //await nextAnimationFrame();
+      input(line)
+    }    
+  }
 
+  /*
   async function load(){
     //アニメーションフレームごとに追加する。
     var data = localStorage.getItem(key)||''
@@ -116,11 +126,39 @@ function comadInput(inputTarget,outputTarget,savekey){
       input(line)
     }
   }
+  */
   
 
   load();
 
 }
+
+function prase(text) {
+  const lines = text.split('\n');
+  const result = [];
+  let currentSection = '';
+
+  for (const line of lines) {
+    if (line.startsWith('#')) {
+      // ヘッダ行を見つけたら、現在のセクションを結果に追加し、新しいセクションを開始する
+      if (currentSection !== '') {
+        result.push(currentSection);
+      }
+      currentSection = line;
+    } else {
+      // 現在のセクションに行を追加する
+      currentSection += '\n' + line;
+    }
+  }
+
+  // 最後のセクションを結果に追加する
+  if (currentSection !== '') {
+    result.push(currentSection);
+  }
+
+  return result;
+}
+
 
 function nextAnimationFrame() {
   return new Promise(resolve => {
