@@ -3,6 +3,27 @@
   --background:url(https://i.pinimg.com/564x/f2/7f/7b/f27f7b1005a60676b58e72e1315e918e.jpg);
 }
 
+/* スクロールバーの幅 */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* スクロールバーのトラック */
+::-webkit-scrollbar-track {
+    background: #111; /* 背景色を黒に設定 */
+}
+
+/* スクロールバーのハンドル（つまみ） */
+::-webkit-scrollbar-thumb {
+    background: #22222a; /* つまみの色を灰色に設定 */
+}
+
+/* スクロールバーのコーナー */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
 #fullback{
   height:100vh;
   width:100vw;
