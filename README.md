@@ -11,6 +11,8 @@ document.body.append(co.comad);// co.comad is element
 ```
 
 ## comadInput(inputTarget,outputTarget,savekey:localStorage key)
+保存したテキストデータは、ローカルストレージに保存されているので、サーバにあげる場合は、このデータを取得する。
+
 ```
 import "https://hashsan.github.io/comad/comad.js";
 
