@@ -70,7 +70,7 @@ if(autoWriter){
   ctrl_s(async()=>{
     const text = localStorage.getItem(key)
     $name.style.color='#f26';
-    await autoWriter.set(name,text)
+    await autoWriter.set(key,text)
     $name.style.color=''
   })  
   //
