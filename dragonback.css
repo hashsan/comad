@@ -39,7 +39,8 @@ h1,h2,h3,h4,h5{
   margin-bottom:1rem;
 }
 h1{
-  text-align:center;  
+  text-align:center;
+  margin-bottom:3rem;
 }
 h1::before,h1::after,
 h2::before,h3::before,h4::before{
