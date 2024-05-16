@@ -6,6 +6,8 @@ import "https://hashsan.github.io/comad/comad.js";
 
 var co = comad('# xyz',()=>{ console.log('update') })
 
+document.body.append(co.comad);// co.comad is element
+
 ```
 
 ## comadInput(inputTarget,outputTarget,savekey:localStorage key)
