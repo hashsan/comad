@@ -56,3 +56,15 @@ h2::before,h3::before,h4::before{
   content:'Q';
   padding-right:1rem;
 }
+
+/*add img*/
+img {
+    margin: auto;
+    width: 256px;
+    height: 256px;
+    object-fit: contain;
+    /* text-align: right; */
+    display: flex;
+    opacity: 0.5;
+}
+
