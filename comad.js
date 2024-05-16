@@ -100,14 +100,34 @@ function comadInput(inputTarget,outputTarget,savekey){
 
   })}
 
+  /*
   function load(){
     var data = localStorage.getItem(key)||''
     input(data)
   }
+  */
+
+  async function load(){
+    //アニメーションフレームごとに追加する。
+    var data = localStorage.getItem(key)||''
+    var ary = data.split('\n').filter(d=>d)
+    for(const line of ary){
+      await nextAnimationFrame();
+      input(line)
+    }
+  }
+  
 
   load();
 
 }
+
+function nextAnimationFrame() {
+  return new Promise(resolve => {
+    requestAnimationFrame(resolve);
+  });
+}
+
 
 window.comadInput = comadInput
 
