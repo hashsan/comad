@@ -4,17 +4,19 @@ toggle editor
 ```
 import "https://hashsan.github.io/comad/comad.js";
 
-var text='# xyz'
-var c = comad(text,()=>{
-   console.log('update')
-})
-document.body.append(c.comad);
+var co = comad('# xyz',()=>{ console.log('update') })
 
 ```
+
+## comadInput(inputTarget,outputTarget,savekey:localStorage key)
 ```
-function comadDatas(){
-  return Array.from(document.querySelectorAll('.comad .edit'))
-   .map(d=>d.textContent).join('\n')
+import "https://hashsan.github.io/comad/comad.js";
+
+comadInput('footer','main','__test__')
+```
+```
+#comadInput{
+  outline:1px solid;padding:1rem;border-radius:4px;  
 }
 ```
 ```
