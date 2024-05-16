@@ -4,7 +4,7 @@ toggle editor
 ```
 import "https://hashsan.github.io/comad/comad.js";
 
-var co = comad('# xyz',()=>{ console.log('update') })
+var co = comad('# xyz',()=>{ console.log('updated') })
 
 document.body.append(co.comad);// co.comad is element
 
