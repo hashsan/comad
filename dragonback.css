@@ -94,6 +94,15 @@ img {
     opacity: 0.5;
 }
 
+/*a*/
+a:visited {
+    color: #d4d;
+}
+a {
+    color: #fff;
+    text-decoration: underline;
+}
+
 
 /*beauty fade*/
 
