@@ -30,3 +30,26 @@ comadInput('footer','main','__test__')
  .view
  .edit
 ```
+
+```
+/*@font-face*/
+/* FantasticCreatures.ttf のフォントフェイス */
+@font-face {
+  font-family: 'FantasticCreatures';
+  src: url('https://hashsan.github.io/comad/FantasticCreatures.ttf') format('truetype');
+}
+
+/* AncientModernTales.ttf のフォントフェイス */
+@font-face {
+  font-family: 'AncientModernTales';
+  src: url('https://hashsan.github.io/comad/AncientModernTales.ttf') format('truetype');
+}
+
+/* dragonlord.otf のフォントフェイス */
+@font-face {
+  font-family: 'Dragonlord';
+  src: url('https://hashsan.github.io/comad/dragonlord.otf') format('opentype');
+}
+
+```
+
