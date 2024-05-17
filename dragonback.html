@@ -112,7 +112,7 @@ function newTab(text, type = 'text/html') {
 //画像は押されたらバックに全面描画。
 //changeFullback
 function changeFullback(src){
-  var el = document.querySelector('#fullback')
+  const el = document.querySelector('#fullback')
   el.style.backgroundImage = `url(${src})`;  
 }
 
