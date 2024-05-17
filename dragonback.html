@@ -108,6 +108,25 @@ function newTab(text, type = 'text/html') {
     console.warn('Popup was blocked. Please enable popups for this site.');
   }
 }
+
+//画像は押されたらバックに全面描画。
+//changeFullback
+function changeFullback(src){
+  var el = document.querySelector('#fullback')
+  el.style.backgroundImage = `url(${src})`;  
+}
+
+document.body.addEventListener('click',(event)=>{
+  
+  if(event.target.tagName ==='IMG'){
+    const img = event.target
+    //console.log(img.src)
+    changeFullback(img.src)
+    event.stopPropagation()
+  }  
+  
+})        
+        
     </script>
 
   
