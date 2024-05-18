@@ -138,6 +138,13 @@ img {
 a:visited {
     color: #d4d;
 }
+
+/*headerとfooterの訪問後リンクは色を変えない*/
+header a:visited,
+footer a:visited{
+  color: #fff; 
+}
+
 a {
     color: #fff;
     text-decoration: underline;
