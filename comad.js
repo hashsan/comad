@@ -1,26 +1,49 @@
 //module comad
 
-import "https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js";
+import "https://cdn.jsdelivr.net/npm/marked/marked.min.js"
 
-/*
-titleCall対応
-*/
-const re_titleCall=/^# (.+?)[\|｜](.+?)[\|｜](.+)/
+//marked
+function custom_renderer(){
+  // カスタムレンダラーの作成
+  const renderer = new marked.Renderer();
 
-function isTitleCall(d){
-  return re_titleCall.test(d)
-}
-function titleCall(d){
-  const ma = d.match(re_titleCall);
-  const temp=`
+  // 元の heading メソッドを保存
+  const _heading = renderer.heading;
+
+  const re_titleCall = /^(.+?)[\|｜](.+?)[\|｜](.+)/;
+
+  function isTitleCall(d) {
+    return re_titleCall.test(d);
+  }
+
+  function titleCall(d) {
+    const ma = d.match(re_titleCall);
+    const temp = `
 <div class="title-call">
   <p class="left">${ma[1]}</p>
   <h1 class="center">${ma[2]}</h1>
   <p class="right">${ma[3]}</p>
-</div>  
-  `.trim();
-  return temp;
+</div>`.trim();
+    return temp;
+  }
+
+  // heading メソッドをオーバーライド
+  renderer.heading = function (text, level) {
+    if (level === 1 && isTitleCall(text)) {
+      // <h1> かつ 正規表現にマッチする場合にカスタム処理を実行
+      return titleCall(text);
+    }
+    // その他の見出しは元の処理を実行
+    return _heading.call(renderer, text, level);
+  };
+
+  return renderer
 }
+
+// marked.js のオプションにカスタムレンダラーを設定
+marked.setOptions({
+  renderer: custom_renderer(),
+});
 
 /*
 var x ="# ウィザードリィ３｜どうしようもない僕に天使が｜管理人：ウィズファン"
@@ -28,6 +51,8 @@ var x ="# ウィザードリィ３｜どうしようもない僕に天使が｜�
 document.querySelector('.output')
  .innerHTML = titleCall(x)
 */
+
+
 
 function comad(text,updateCaller){
   //updatecallerは呼び出すだけで何もしない。
@@ -40,13 +65,7 @@ function comad(text,updateCaller){
     return text.trimEnd() +'\n'
   }
 
-  o.parse = (d)=>{
-    //titleCall対応
-    if(isTitleCall(d)){
-      return titleCall(d)
-    }
-    return marked.parse(d)
-  }
+  o.parse = marked.parse
 
   o.view = document.createElement('div')
   {
