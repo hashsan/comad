@@ -63,8 +63,11 @@ window.comad = comad;
 
 
 //add comadInput
+/*
+loadData対応
+*/
 
-function comadInput(inputTarget,outputTarget,savekey){
+function comadInput(inputTarget,outputTarget,savekey,loadData){
 
   var $input = document.createElement('div')
   $input.id ="comadInput"
@@ -108,7 +111,7 @@ function comadInput(inputTarget,outputTarget,savekey){
   */
   
   function load(){
-    var data = localStorage.getItem(key)||''
+    var data = loadData||localStorage.getItem(key)||'' //ロードデータ対応
     var ary = prase(data)
     for(const line of ary){
       //await nextAnimationFrame();
@@ -128,8 +131,7 @@ function comadInput(inputTarget,outputTarget,savekey){
   }
   */
   
-
-  load();
+  load();///////////////////////////////
 
 }
 
