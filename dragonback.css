@@ -72,22 +72,43 @@ h1{
   margin-bottom:3rem;
 }
 
+/*utility*/
+.r,
+.right{
+  text-align:right;  
+}
+
+.l,
+.left{
+  text-align:left;  
+}
+
+.c,
+.center{
+  text-align:center;  
+}
+
 /*h3,h4にもつけるのは野暮ったいので廃止*/
 
-h1::before,h1::after,
-h2::before
-/*,h3::before,h4::before*/{
+.title-call::after, footer::before {
+    font-family: dragoncaps;
+    font-weight: normal;
+    vertical-align: -0.2em;
+
+    display: block;  
+  
+    content: '$';
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+
+h2::before{
   font-family:dragoncaps;
   font-weight:normal;
   vertical-align:-0.2em;
-}
-h1::before,h1::after{
-  content:'$';
-  padding:0 2rem;
-}
-
-h2::before
-/*,h3::before,h4::before*/{
+  
   content:'Q';
   padding-right:1rem;
 }
