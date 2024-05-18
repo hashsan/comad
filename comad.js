@@ -38,6 +38,17 @@ function custom_renderer() {
     return _heading.call(renderer, text, level);
   };
 
+
+ //行頭＊は注釈。大文字の「＊」のみ。
+ const _paragraph = renderer.paragraph;
+    renderer.paragraph = function(text) {
+      if (text.startsWith('＊')) {
+        return `<p class="small">${text}</p>`;
+      } else {
+        return _paragraph.call(this, text);
+      }
+    };
+
   return renderer;
 }
 
