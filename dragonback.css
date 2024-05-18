@@ -71,8 +71,12 @@ h1{
   text-align:center;
   margin-bottom:3rem;
 }
+
+/*h3,h4にもつけるのは野暮ったいので廃止*/
+
 h1::before,h1::after,
-h2::before,h3::before,h4::before{
+h2::before
+/*,h3::before,h4::before*/{
   font-family:dragoncaps;
   font-weight:normal;
   vertical-align:-0.2em;
@@ -81,7 +85,9 @@ h1::before,h1::after{
   content:'$';
   padding:0 2rem;
 }
-h2::before,h3::before,h4::before{
+
+h2::before
+/*,h3::before,h4::before*/{
   content:'Q';
   padding-right:1rem;
 }
