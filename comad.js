@@ -54,7 +54,7 @@ document.querySelector('.output')
 
 
 
-function comad(text,updateCaller){
+function comad(text,updateCaller,readonlyFlg){
   //updatecallerは呼び出すだけで何もしない。
   var o={}
 
@@ -103,11 +103,16 @@ function comad(text,updateCaller){
     o.edit.focus()
   }
 
+  o.readonly =(flg)=>{
+    flg = !!flg;
+    o.view.onclick = flg?null:o.showEdit
+    o.edit.onblur = flg?null:o.showView  
+    o.showView();    
+  }
+
+  o.readonly(readonlyFlg);
   ////
-  o.view.onclick = o.showEdit
-  o.edit.onblur = o.showView  
-  o.showView();
-  //showView,showEdit,el,parse,setText
+  //showView,showEdit,el,parse,setText,readonly
   return o;
 }
 
