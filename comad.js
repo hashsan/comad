@@ -14,9 +14,9 @@ function titleCall(d){
   const ma = d.match(re_titleCall);
   const temp=`
 <div class="title-call">
-  <p class="right">${ma[1]}</p>
+  <p class="left">${ma[1]}</p>
   <h1 class="center">${ma[2]}</h1>
-  <p class="left">${ma[3]}</p>
+  <p class="right">${ma[3]}</p>
 </div>  
   `.trim();
   return temp;
