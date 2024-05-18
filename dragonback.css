@@ -38,6 +38,10 @@
     background-position: center;/*center*/
 }
 
+/*日本語対応*/
+* { word-break: break-all; }
+
+
 body{
   margin:auto;
   max-width:600px;
@@ -88,9 +92,13 @@ h1{
   text-align:center;  
 }
 
+.small{
+  font-size:0.8em;
+}
+
 /*h3,h4にもつけるのは野暮ったいので廃止*/
 
-.title-call::after, footer::before {
+.title-call::after{
     font-family: dragoncaps;
     font-weight: normal;
     vertical-align: -0.2em;
