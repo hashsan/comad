@@ -2,6 +2,33 @@
 
 import "https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js";
 
+/*
+titleCall対応
+*/
+const re_titleCall=/^# (.+?)[\|｜](.+?)[\|｜](.+)/
+
+function isTitleCall(d){
+  return re_titleCall.test(d)
+}
+function titleCall(d){
+  const ma = d.match(re_titleCall);
+  const temp=`
+<div class="title-call">
+  <p class="right">${ma[1]}</p>
+  <h1 class="center">${ma[2]}</h1>
+  <p class="left">${ma[3]}</p>
+</div>  
+  `.trim();
+  return temp;
+}
+
+/*
+var x ="# ウィザードリィ３｜どうしようもない僕に天使が｜管理人：ウィズファン"
+
+document.querySelector('.output')
+ .innerHTML = titleCall(x)
+*/
+
 function comad(text,updateCaller){
   //updatecallerは呼び出すだけで何もしない。
   var o={}
@@ -13,7 +40,13 @@ function comad(text,updateCaller){
     return text.trimEnd() +'\n'
   }
 
-  o.parse = marked.parse
+  o.parse = (d)=>{
+    //titleCall対応
+    if(isTitleCall(d)){
+      return titleCall(d)
+    }
+    return marked.parse(d)
+  }
 
   o.view = document.createElement('div')
   {
